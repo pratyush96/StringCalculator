@@ -2,17 +2,15 @@ package stringCalculator;
 
 public class StringCalculator {
 	
-	public  int add(String numbers) {
-		String[] numberArray= numbers.split(",");
-		if(numbers.isEmpty()) {
-			return 0;
+	public  int add( String numbers) {
+		int returnValue = 0;
+		String[] numbersArray = numbers.split(",|\n"); // Added |\n to the split regex
+		for (String number : numbersArray) {
+			if (!number.trim().isEmpty()) {
+				returnValue += Integer.parseInt(number.trim());
+			}
 		}
-		else if (numberArray.length==1) {
-			return Integer.parseInt(numbers);
-		}
-		else {
-			return (Integer.parseInt(numberArray[0])+Integer.parseInt(numberArray[1]));
-		}
+		return returnValue;
 	}
 
 }
