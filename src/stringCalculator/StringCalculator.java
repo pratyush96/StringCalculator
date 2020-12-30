@@ -1,8 +1,11 @@
 package stringCalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 	
-	public  int add( String numbers) {
+	public  int add( String numbers)  {
 		String delimiter = ",|\n";
 		String numbersWithoutDelimiter = numbers;
 		if (numbers.startsWith("//")) {
@@ -13,13 +16,21 @@ public class StringCalculator {
 		return add(numbersWithoutDelimiter, delimiter);
 	}
 	
-	private static int add(final String numbers, final String delimiter) {
+	private  int add( String numbers, final String delimiter) {
 		int returnValue = 0;
 		String[] numbersArray = numbers.split(delimiter);
+		List<Integer> negativeNumbers = new ArrayList<Integer>();
 		for (String number : numbersArray) {
 			if (!number.trim().isEmpty()) {
-				returnValue += Integer.parseInt(number.trim());
+				int numberInt = Integer.parseInt(number.trim());
+				if (numberInt < 0) {
+					negativeNumbers.add(numberInt);
+				}
+				returnValue += numberInt;
 			}
+		}
+		if (negativeNumbers.size() > 0) {
+			throw new RuntimeException("Negatives not allowed: " + negativeNumbers.toString());
 		}
 		return returnValue;		
 	}
