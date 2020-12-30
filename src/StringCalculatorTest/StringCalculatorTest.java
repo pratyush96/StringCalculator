@@ -40,5 +40,9 @@ public class StringCalculatorTest {
 		public void whenNewLineIsUsedBetweenNumbersThenReturnValuesAreTheirSums() {
 			Assert.assertEquals(stringCalculator.add("3,6\n15"),3+6+15);
 		}
+		@Test
+	    public void testOtherDelimiter(){
+	    	Assert.assertEquals( stringCalculator.add("//;\n1;2"),3);
+	    }
 	}
 
