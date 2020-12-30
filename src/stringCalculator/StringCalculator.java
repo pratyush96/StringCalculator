@@ -5,7 +5,10 @@ import java.util.List;
 
 public class StringCalculator {
 	
+	  int count=0; 
+	
 	public  int add( String numbers)  {
+		count++;
 		String delimiter = ",|\n";
 		String numbersWithoutDelimiter = numbers;
 		if (numbers.startsWith("//")) {
@@ -16,7 +19,7 @@ public class StringCalculator {
 		return add(numbersWithoutDelimiter, delimiter);
 	}
 	
-	private  int add( String numbers, final String delimiter) {
+	private static int add(final String numbers, final String delimiter) {
 		int returnValue = 0;
 		String[] numbersArray = numbers.split(delimiter);
 		List<Integer> negativeNumbers = new ArrayList<Integer>();
@@ -25,8 +28,9 @@ public class StringCalculator {
 				int numberInt = Integer.parseInt(number.trim());
 				if (numberInt < 0) {
 					negativeNumbers.add(numberInt);
+				} else if (numberInt <= 1000) {
+					returnValue += numberInt;
 				}
-				returnValue += numberInt;
 			}
 		}
 		if (negativeNumbers.size() > 0) {
@@ -34,4 +38,11 @@ public class StringCalculator {
 		}
 		return returnValue;		
 	}
+	
+	public int GetCalledCount() {
+		add("");
+		return count;
+	}
+	
+	
 }

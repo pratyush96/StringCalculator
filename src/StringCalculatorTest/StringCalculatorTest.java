@@ -69,8 +69,19 @@ public class StringCalculatorTest {
 //				catch (IllegalArgumentException e){
 //					Assert.assertEquals(e.getMessage(), "Negatives not allowed: -4,-5");
 //				}
+						
 				
-				
-		    }
+		 }
+		 
+		 @Test
+			public void gettingInvocationCount(){
+			 Assert.assertEquals(stringCalculator.GetCalledCount(), 1);
+	    }
+		 
+		 @Test
+			public final void numBiggerThanThousandIgnored() {
+				Assert.assertEquals(stringCalculator.add("3,1000,1001,6,1234"),1009);
+			}
+
 	}
 
